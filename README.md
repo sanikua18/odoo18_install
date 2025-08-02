@@ -12,3 +12,9 @@ sudo ./odoo18_install.sh
 
 # Запуск з власними паролями
 sudo ./odoo18_install.sh "мій_пароль_бд" "мій_пароль_адміна"
+
+
+# OS Support
+переірено на Ubuntu Server 24.04
+попередня підготовка чистого сервера
+sudo apt update $$ sudo apt upgrade -y && sudo reboot
