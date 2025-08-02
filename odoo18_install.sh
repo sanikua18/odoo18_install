@@ -17,7 +17,7 @@ echo "Пароль адміністратора: $ADMIN_PASSWORD"
 
 # Оновлення системи
 echo "Оновлення пакетів системи..."
-sudo apt-get update
+sudo apt-get update && sudo apt upgrade -y
 
 # Інсталяція Python та залежностей
 echo "Інсталяція Python та залежностей..."
