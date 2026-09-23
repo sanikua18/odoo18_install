@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Скрипт для автоматичної інсталяції Odoo 19 на Ubuntu Server 24.04
-# Використання: ./install_odoo19.sh [DB_PASSWORD] [ADMIN_PASSWORD]
+# Скрипт для автоматичної інсталяції Odoo 20 на Ubuntu Server 24.04
+# Використання: ./install_odoo20.sh [DB_PASSWORD] [ADMIN_PASSWORD]
 
 set -e  # Зупинити скрипт при помилці
 
@@ -11,7 +11,7 @@ ADMIN_PASSWORD=${2:-"Pass+admin"}
 ODOO_USER="odoo20"
 ODOO_HOME="/opt/odoo20"
 
-echo "=== Початок інсталяції Odoo 19 ==="
+echo "=== Початок інсталяції Odoo 20 ==="
 echo "Пароль БД: $DB_PASSWORD"
 echo "Пароль адміністратора: $ADMIN_PASSWORD"
 
@@ -49,7 +49,7 @@ sudo adduser --system --home=$ODOO_HOME --group $ODOO_USER || true
 # Інсталяція Git
 sudo apt-get install -y git
 
-# Завантаження Odoo 19
+# Завантаження Odoo 20
 echo "Завантаження Odoo 20..."
 sudo rm -rf $ODOO_HOME/* || true
 sudo -u $ODOO_USER git clone https://www.github.com/odoo/odoo --depth 1 --branch 20.0 --single-branch $ODOO_HOME/odoo
@@ -97,7 +97,7 @@ sudo chown -R $ODOO_USER:$ODOO_USER $ODOO_HOME
 
 # Створення systemd сервісу
 echo "Створення systemd сервісу..."
-sudo tee /etc/systemd/system/odoo19.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/odoo20.service > /dev/null <<EOF
 [Unit]
 Description=Odoo20
 Documentation=http://www.odoo.com
@@ -123,7 +123,7 @@ sudo systemctl start odoo20.service
 # Перевірка статусу
 echo "Перевірка статусу сервісу..."
 sleep 5
-sudo systemctl status odoo19.service --no-pager
+sudo systemctl status odoo20.service --no-pager
 
 echo ""
 echo "=== Інсталяція завершена ==="
@@ -136,4 +136,4 @@ echo "Для перегляду логів використовуйте:"
 echo "sudo tail -f $ODOO_HOME/odoo20.log"
 echo ""
 echo "Для управління сервісом:"
-echo "sudo systemctl start|stop|restart|status odoo19.service"
+echo "sudo systemctl start|stop|restart|status odoo20.service"
